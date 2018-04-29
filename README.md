@@ -99,7 +99,7 @@ Then build a `setup.py` like the one in this repo; important parts of that file 
 * license (it's understood that if a license isn't specified, legally that package is commercially-licensed and may not be used)
 * version (cannot re-upload a package if that version has already been uploaded- need to increment)
 
-Finally, run the following commands (you may be able to ommit some of them- doesn't do any harm to leave them):
+Finally, run the following commands (you may be able to omit some of them- doesn't do any harm to leave them):
 
     python setup.py build
     python setup.py sdist
