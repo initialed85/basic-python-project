@@ -1,0 +1,22 @@
+FROM basic_project_base
+
+# install the build environment
+RUN apt-get install -y python2.7 python-dev python-pip virtualenvwrapper wget
+RUN pip install --upgrade pip setuptools
+RUN wget https://bitbucket.org/pypy/pypy/downloads/pypy3-v6.0.0-linux64.tar.bz2
+RUN tar -xjvf pypy3-v6.0.0-linux64.tar.bz2
+RUN ln -s /pypy3-v6.0.0-linux64/bin/pypy3 /usr/local/bin/pypy3
+
+WORKDIR /workspace
+
+# add the test requirements
+ADD requirements.txt requirements.txt
+ADD requirements-dev.txt requirements-dev.txt
+RUN virtualenv -p `which pypy3` /Virtualenv \
+    && . /Virtualenv/bin/activate \
+    && pip install -r requirements-dev.txt \
+    && ln -s `which python` /usr/local/bin/test_python
+
+# add the test files
+ADD basic_project basic_project
+ADD tests tests

@@ -1,0 +1,19 @@
+FROM basic_project_base
+
+# install the build environment
+RUN apt-get install -y python2.7 python-dev python-pip virtualenvwrapper
+RUN pip install --upgrade pip setuptools
+
+WORKDIR /workspace
+
+# add the test requirements
+ADD requirements.txt requirements.txt
+ADD requirements-dev.txt requirements-dev.txt
+RUN virtualenv -p `which python2.7` /Virtualenv \
+    && . /Virtualenv/bin/activate \
+    && pip install -r requirements-dev.txt \
+    && ln -s `which python` /usr/local/bin/test_python
+
+# add the test files
+ADD basic_project basic_project
+ADD tests tests

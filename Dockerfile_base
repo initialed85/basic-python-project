@@ -1,0 +1,15 @@
+FROM ubuntu:16.04
+
+# make sure we get nice test colours
+ENV TERM xterm-256color
+
+ARG TIMEZONE
+
+# set the container to our timezone
+RUN apt-get update
+RUN apt-get install -y tzdata
+RUN ln -fs /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+RUN dpkg-reconfigure -f noninteractive tzdata
+
+# create a folder to store our build files
+RUN mkdir -p /workspace

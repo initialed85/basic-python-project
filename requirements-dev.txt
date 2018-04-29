@@ -1,0 +1,7 @@
+# get the prod requirements
+-r requirements.txt
+
+# these are the dev requirements
+mock==2.0.0
+PyHamcrest==1.9.0
+pytest==3.5.1

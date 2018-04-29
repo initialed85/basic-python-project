@@ -1,0 +1,19 @@
+FROM basic_project_base
+
+# install the build environment
+RUN apt-get install -y python3.5 python3-dev python3-pip virtualenvwrapper
+RUN pip3 install --upgrade pip setuptools
+
+WORKDIR /workspace
+
+# add the test requirements
+ADD requirements.txt requirements.txt
+ADD requirements-dev.txt requirements-dev.txt
+RUN virtualenv -p `which python3` /Virtualenv \
+    && . /Virtualenv/bin/activate \
+    && pip install -r requirements-dev.txt \
+    && ln -s `which python` /usr/local/bin/test_python
+
+# add the test files
+ADD basic_project basic_project
+ADD tests tests
