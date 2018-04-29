@@ -54,6 +54,12 @@ A test file/folder to focus on can be specified as the first command line argume
 
     ./test.sh tests/fortune_test.py
 
+## To run the tests for PyPy3 when changes are detected in the source code:
+
+This requires you install a neat tool called [entr](http://entrproject.org/)
+
+    find basic_project tests requirements.txt | entr -s -c 'INTERPRETER=pypy3 ./test.sh'
+
 ## To run all tests
 
     ./test_all.sh
