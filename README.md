@@ -106,4 +106,4 @@ Finally, run the following commands (you may be able to omit some of them- doesn
     python setup.py bdist_wheel
     twine upload dist/*
 
-At this point, your package should now be publish to PyPI.
+At this point, your package should now be published to PyPI.
